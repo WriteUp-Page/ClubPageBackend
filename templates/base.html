@@ -29,9 +29,13 @@
         </div>
         <ul class="nav">
           <li><a href="/intro">소개</a></li>
-          <li><a href="/qna">Q&A 게시판</a></li>
-          <li><a href="/login">로그인</a></li>
-          <li><a href="/register">회원가입</a></li>
+          <li><a href="/board">Q&A 게시판</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% else %}
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          <li><a href="{{ url_for('register') }}">Register</a></li>
+          {% endif %}
         </ul>
         <div class="searcherArea">
           <form>
