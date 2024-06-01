@@ -85,5 +85,15 @@ def board():
     return render_template("board.html", title="Board", form=form, posts=posts)
 
 
+@app.route("/intro", methods=["GET"])
+def intro():
+    return render_template("intro.html")
+
+
+@app.route("/error", methods=["GET"])
+def error():
+    return render_template("404.html")
+
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
