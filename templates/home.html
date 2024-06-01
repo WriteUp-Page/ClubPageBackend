@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">안녕하세요, 우리 동아리에 오신 것을 환영합니다!</h1>
+  <p class="lead">이곳은 [동아리 이름]의 홈페이지입니다. 다양한 활동과 소식을 공유하고, 새로운 멤버를 맞이하고자 합니다.</p>
+  <hr class="my-4">
+  <p>더 알아보시려면 아래 버튼을 클릭해주세요.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">더 알아보기</a>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/activity.jpg') }}" class="card-img-top" alt="활동 사진">
+        <div class="card-body">
+          <h5 class="card-title">활동 제목</h5>
+          <p class="card-text">이 활동에 대한 간단한 설명을 여기에 추가합니다.</p>
+          <a href="#" class="btn btn-primary">자세히 보기</a>
+        </div>
+      </div>
+    </div>
+    <!-- 추가 카드를 이 위치에 복사하여 붙여넣기 하세요 -->
+  </div>
+</div>
+{% endblock %}
