@@ -14,7 +14,7 @@ db.init_app(app)  # 데이터베이스 초기화
 bcrypt = Bcrypt(app)  # 비밀번호 암호화
 login_manager.init_app(app)  # 로그인 매니저 초기화
 login_manager.login_view = "login"  # 로그인이 필요한 페이지로 리다이렉트
-pymysql.install_as_MySQLdb()  # pymysql을 MySQLdb처럼 사용 == MYSQL연결
+# pymysql.install_as_MySQLdb()  # pymysql을 MySQLdb처럼 사용 == MYSQL연결
 
 
 @app.route("/")
@@ -37,21 +37,32 @@ def register():
         if current_user.is_authenticated:
             return redirect(url_for("home"))
         if form.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(form.password.data).decode(
-                "utf-8"
-            )
-            user = User(
-                username=form.username.data,
-                email=form.email.data,
-                password=hashed_password,
-            )
-            db.session.add(user)
-            db.session.commit()
-            flash(
-                "Your account has been created! You are now able to log in", "success"
-            )
-            return redirect(url_for("login"))
-        return render_template("register.html", title="Register", form=form)
+            existing_user = User.query.filter_by(username=form.username.data).first()
+            if existing_user:
+                flash(
+                    "Username already exists. Please choose a different one.", "danger"
+                )
+                return redirect(url_for("register"))
+            else:
+                hashed_password = bcrypt.generate_password_hash(
+                    form.password.data
+                ).decode("utf-8")
+                user = User(
+                    username=form.username.data,
+                    email=form.email.data,
+                    password=hashed_password,
+                )
+                db.session.add(user)
+                db.session.commit()
+                flash(
+                    "Your account has been created! You are now able to log in",
+                    "success",
+                )
+                return redirect(url_for("home"))
+        else:
+            flash("Invalid input", "danger")
+            print(form.errors)
+            return redirect(url_for("register"))
 
 
 @app.route("/login", methods=["GET", "POST"])  #
@@ -66,6 +77,7 @@ def login():
             return redirect(url_for("home"))
         else:
             flash("Login Unsuccessful. Please check email and password", "danger")
+
     return render_template("login.html", title="Login", form=form)
 
 
@@ -101,11 +113,6 @@ def intro():
 
 
 # 에러 발생시 404.html로 리다이렉트
-@app.route("/error", methods=["GET"])
-def error():
-    return render_template("404.html")
-
-
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
