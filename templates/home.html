@@ -1,27 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="jumbotron">
-  <h1 class="display-4">안녕하세요, 우리 동아리에 오신 것을 환영합니다!</h1>
-  <p class="lead">이곳은 [동아리 이름]의 홈페이지입니다. 다양한 활동과 소식을 공유하고, 새로운 멤버를 맞이하고자 합니다.</p>
-  <hr class="my-4">
-  <p>더 알아보시려면 아래 버튼을 클릭해주세요.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">더 알아보기</a>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/activity.jpg') }}" class="card-img-top" alt="활동 사진">
-        <div class="card-body">
-          <h5 class="card-title">활동 제목</h5>
-          <p class="card-text">이 활동에 대한 간단한 설명을 여기에 추가합니다.</p>
-          <a href="#" class="btn btn-primary">자세히 보기</a>
-        </div>
-      </div>
+<div class="intro">
+    <div class="intro_text">
+        <h1>동아리 소개</h1>
+        <h4 class="contents1">
+            writeup 동아리는 여러프로젝트를 진행하고<br />현재 진행중인
+            프로젝트는 "자격증 스터디, 홈페이지 웹개발,악성코드개발 리버싱스터디
+            등이 있습니다.<br />다양한 동아리 프로젝트를 통해 많은 경험과 실력을
+            쌓아가는 동아리 생활이 됐으면 좋겠습니다.
+        </h4>
     </div>
-    <!-- 추가 카드를 이 위치에 복사하여 붙여넣기 하세요 -->
-  </div>
 </div>
+<!--intro end-->
+<ul class="amount">
+    <li>
+        <div>
+            <div class="contents1">aa</div>
+            <div class="result">9817328</div>
+        </div>
+    </li>
+    <li>
+        <div>
+            <div class="contents1">bb</div>
+            <div class="result">93,234</div>
+        </div>
+    </li>
+    <li>
+        <div>
+            <div class="contents1">cc</div>
+            <div class="result">h187293</div>
+        </div>
+    </li>
+    <li>
+        <div>
+            <div class="contents1">dd</div>
+            <div class="result">57,221,084</div>
+        </div>
+    </li>
+</ul>
+<!-- amount end -->
 {% endblock %}
