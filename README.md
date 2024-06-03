@@ -20,5 +20,17 @@
 2. 게시판
 
 
-### 미리보기
-![alt text](image.png)
+## 미리보기
+
+### / (/home)
+![alt text](assets/image.png)
+
+#### /login
+![alt text](assets/image-1.png)
+
+### /register
+![alt text](assets/image-2.png)
+
+
+### /intro
+![alt text](assets/image-3.png)
